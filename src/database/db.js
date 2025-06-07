@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const connectDatabase = () => {
     console.log("Wait we're trying to connect to the database...");
 
     mongoose.connect(
-        "mongodb+srv://root:root@cluster0.urt2uky.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+        process.env.DB_URL,
         { useNewUrlParser: true, useUnifiedTopology: true, }
     )
     .then(() => console.log("MongoDB Atlas connected."))
