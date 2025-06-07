@@ -1,4 +1,4 @@
-# Sobre o repositório
+# 📃 Sobre o repositório
 
 Se trata de um projeto para o início da minha jornada full-stack onde utilizei a pilha stack do **MERN (MongoDB, Express, React e Nodejs)** para uma aplicação simples de um blog, onde você pode:
 
@@ -13,7 +13,7 @@ Se trata de um projeto para o início da minha jornada full-stack onde utilizei 
 
 **Status do projeto:** Em andamento.
 
-# Configurando as variáveis de ambiente
+# 🔌 Configurando as variáveis de ambiente
 
 Antes de mais nada crie um arquivo chamado **.env** na raíz do projeto e cole o conteúdo contido em **.env.example** no arquivo criado. Depois disso você pode excluir o **.env.example**.
 
@@ -23,7 +23,7 @@ a variável ambiente **DB_URL**, contida no arquivo **.env** criado anteriorment
 Após está configuração, você precisa também configurar a chave secreta do *Json Web Token* no padrão Md5 e atribuir a variável ambiente **SECRET_JWT**, para isso eu indico o site
 <a href="https://www.md5hashgenerator.com">MD5 HASH GENERATOR<a/>.
 
-# Rodando a aplicação
+# 💻 Rodando a aplicação
 
 Após as configurações das variáveis do ambiente, você precisa, na raíz do projeto, instalar as dependências requeridas para rodar a aplicação, para isso, efetue o seguinte comando:
 
