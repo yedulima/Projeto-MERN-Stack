@@ -1,7 +1,7 @@
 import { findByIdService } from "../services/user.service.js";
 import mongoose from "mongoose";
 
-export const validId = (req, res, next) => {
+const validId = (req, res, next) => {
     try {
         const id = req.params.id;
     
@@ -17,7 +17,7 @@ export const validId = (req, res, next) => {
     };
 };
 
-export const validUser = async (req, res, next) => {
+const validUser = async (req, res, next) => {
     try {
         const id = req.params.id;
         const user = await findByIdService(id);
@@ -34,3 +34,7 @@ export const validUser = async (req, res, next) => {
         res.status(500).send({ message: err.message });
     };
 };
+
+
+
+export { validId, validUser };

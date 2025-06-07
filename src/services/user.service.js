@@ -1,12 +1,12 @@
 import User from "../models/User.js";
 
-export const createService = (body) => User.create(body);
+const createService = (body) => User.create(body);
 
-export const findAllService = () => User.find();
+const findAllService = () => User.find();
 
-export const findByIdService = (id) => User.findById(id);
+const findByIdService = (id) => User.findById(id);
 
-export const updateService = (
+const updateService = (
     id,
     name,
     username,
@@ -18,3 +18,5 @@ export const updateService = (
         { _id: id },
         { name, username, email, password, avatar, background }
     );
+
+export { createService, findAllService, findByIdService, updateService };
