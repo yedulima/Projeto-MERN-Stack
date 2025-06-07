@@ -1,13 +1,12 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const app = express();
-const connectDatabase = require("./src/database/db");
+import express from "express";
+import dotenv from "dotenv";
+import connectDatabase from "./src/database/db.js";
+import userRoute from "./src/routes/user.route.js";
 
+const app = express();
 dotenv.config();
 
 const port = process.env.PORT;
-
-const userRoute = require("./src/routes/user.route");
 
 connectDatabase();
 app.use(express.json());
