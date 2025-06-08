@@ -2,24 +2,6 @@ import { createService, findAllService } from "../services/post.service.js";
 
 const create = async (req, res) => {
     try {
-        const { authorization } = req.headers;
-
-        if (!authorization) {
-            return res.status(401).send({ message: "User unauthorized." });
-        };
-
-        const parts = authorization.split(" ");
-
-        const [schema, token] = parts;
-
-        if (parts.length !== 2) {
-            return res.status(401).send({ message: "User unauthorized." });
-        };
-
-        if (schema !== "Bearer") {
-            return res.status(401).send({ message: "User unauthorized." });
-        };
-
         const { title, text, banner } = req.body;
 
         if (!title || !text || !banner) {
@@ -30,7 +12,7 @@ const create = async (req, res) => {
             title,
             text,
             banner,
-            user: { _id: "684464670693539dc173b599" },
+            user: req.userId,
         });
 
         res.status(201).send({ message: "Post created successfully!" });
