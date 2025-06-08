@@ -1,4 +1,4 @@
-import { createService, findAllService, countService } from "../services/post.service.js";
+import { createService, findAllService, countService, topPostsService } from "../services/post.service.js";
 
 const create = async (req, res) => {
     try {
@@ -76,4 +76,31 @@ const findAll = async (req, res) => {
     };
 };
 
-export { create, findAll };
+const topPosts = async (req, res) => {
+    try {
+        const post = await topPostsService();
+
+        if (!post) {
+            return res.status(400).send({ message: "There is no registred posts" });
+        };
+
+        res.status(200).send({
+            post: {
+                id: post._id,
+                title: post.title,
+                text: post.text,
+                banner: post.banner,
+                likes: post.likes,
+                comments: post.comments,
+                
+                name: post.user.name,
+                userName: post.user.username,
+                userAvatar: post.user.avatar,
+            },
+        });
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    };
+};
+
+export { create, findAll, topPosts };

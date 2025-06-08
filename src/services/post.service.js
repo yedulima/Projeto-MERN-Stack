@@ -10,4 +10,8 @@ const findAllService = (limit, offset) => Post.find()
 
 const countService = () => Post.countDocuments();
 
-export { createService, findAllService, countService };
+const topPostsService = () => Post.findOne()
+    .sort({ _id: -1 })
+    .populate("user");
+
+export { createService, findAllService, countService, topPostsService };
