@@ -14,4 +14,15 @@ const topPostsService = () => Post.findOne()
     .sort({ _id: -1 })
     .populate("user");
 
-export { createService, findAllService, countService, topPostsService };
+const findByIdService = (id) => Post.findById(id)
+    .populate("user");
+
+const searchByTitleService = (title) => Post.find({
+    title: {
+        $regex: `${title || ""}`,
+        $options: "i"},
+    })
+    .sort({ _id: -1 })
+    .populate("user");
+
+export { createService, findAllService, countService, topPostsService, findByIdService, searchByTitleService };
