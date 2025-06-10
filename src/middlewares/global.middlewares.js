@@ -11,9 +11,9 @@ const validId = (req, res, next) => {
 
         req.id = id;
 
-        next();
+        return next();
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        return res.status(500).send({ message: err.message });
     };
 };
 
@@ -29,9 +29,9 @@ const validUser = async (req, res, next) => {
         req.id = id;
         req.user = user;
 
-        next();
+        return next();
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        return res.status(500).send({ message: err.message });
     };
 };
 

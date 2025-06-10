@@ -1,7 +1,7 @@
 import { loginService, generateToken } from "../services/auth.service.js";
 import bcrypt from "bcrypt";
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
 
@@ -24,5 +24,3 @@ const login = async (req, res) => {
         res.status(500).send(err.message);
     };
 };
-
-export { login };

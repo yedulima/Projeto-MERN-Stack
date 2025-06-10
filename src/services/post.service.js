@@ -1,23 +1,23 @@
 import Post from "../models/Post.js";
 
-const createService = (body) => Post.create(body);
+export const createService = (body) => Post.create(body);
 
-const findAllService = (limit, offset) => Post.find()
+export const findAllService = (limit, offset) => Post.find()
     .sort({ _id: -1 })
     .skip(offset)
     .limit(limit)
     .populate("user");
 
-const countService = () => Post.countDocuments();
+export const countService = () => Post.countDocuments();
 
-const topPostsService = () => Post.findOne()
+export const topPostsService = () => Post.findOne()
     .sort({ _id: -1 })
     .populate("user");
 
-const findByIdService = (id) => Post.findById(id)
+export const findByIdService = (id) => Post.findById(id)
     .populate("user");
 
-const searchByTitleService = (title) => Post.find({
+export const searchByTitleService = (title) => Post.find({
     title: {
         $regex: `${title || ""}`,
         $options: "i"},
@@ -25,13 +25,13 @@ const searchByTitleService = (title) => Post.find({
     .sort({ _id: -1 })
     .populate("user");
 
-const searchByUserService = (id) => Post.find({
+export const searchByUserService = (id) => Post.find({
         user: id
     })
     .sort({ _id: -1 })
     .populate("user");
 
-const updateService = (
+export const updateService = (
     id,
     title,
     text,
@@ -42,16 +42,4 @@ const updateService = (
         { rawResult: true }
     );
 
-const excludeService = (id) => Post.findOneAndDelete({ _id: id });
-
-export {
-    createService,
-    findAllService,
-    countService,
-    topPostsService,
-    findByIdService,
-    searchByTitleService,
-    searchByUserService,
-    updateService,
-    excludeService,
-};
+export const excludeService = (id) => Post.findOneAndDelete({ _id: id });

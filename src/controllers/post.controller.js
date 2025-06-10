@@ -3,19 +3,18 @@ import {
     findAllService,
     countService,
     topPostsService,
-    findByIdService,
     searchByTitleService,
     searchByUserService,
     updateService,
     excludeService,
 } from "../services/post.service.js";
 
-const create = async (req, res) => {
+export const create = async (req, res) => {
     try {
         const { title, text, banner } = req.body;
 
         if (!title || !text || !banner) {
-            res.status(400).send({ message: "Submit all fields for registration." });
+            return res.status(400).send({ message: "Submit all fields for registration." });
         };
 
         await createService({
@@ -25,13 +24,13 @@ const create = async (req, res) => {
             user: req.userId,
         });
 
-        res.status(201).send({ message: "Post created successfully!" });
+        return res.status(201).send({ message: "Post created successfully!" });
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        return res.status(500).send({ message: err.message });
     };
 };
 
-const findAll = async (req, res) => {
+export const findAll = async (req, res) => {
     try {
 
         let { limit, offset } = req.query;
@@ -61,7 +60,7 @@ const findAll = async (req, res) => {
             return res.status(400).send({ message: "There are no registred posts." });
         };
 
-        res.status(200).send({
+        return res.status(200).send({
             nextUrl,
             previousUrl,
             limit,
@@ -82,15 +81,15 @@ const findAll = async (req, res) => {
             })),
         });
     } catch (err) {
-        res.status(400).send({ message: err.message });
+        return res.status(400).send({ message: err.message });
     };
 };
 
-const findById = async (req, res) => {
+export const findById = async (req, res) => {
     try {
         const post = req.post;
 
-        res.status(200).send({
+        return res.status(200).send({
             post: {
                 id: post._id,
                 title: post.title,
@@ -105,11 +104,11 @@ const findById = async (req, res) => {
             },
         });
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        return res.status(500).send({ message: err.message });
     };
 };
 
-const topPosts = async (req, res) => {
+export const topPosts = async (req, res) => {
     try {
         const post = await topPostsService();
 
@@ -117,7 +116,7 @@ const topPosts = async (req, res) => {
             return res.status(400).send({ message: "There is no registred posts" });
         };
 
-        res.status(200).send({
+        return res.status(200).send({
             post: {
                 id: post._id,
                 title: post.title,
@@ -132,20 +131,20 @@ const topPosts = async (req, res) => {
             },
         });
     } catch (err) {
-        res.status(400).send({ message: err.message });
+        return res.status(400).send({ message: err.message });
     };
 };
 
-const searchByTitle = async (req, res) => {
+export const searchByTitle = async (req, res) => {
     try {
         const { title } = req.query;
         const posts = await searchByTitleService(title);
 
         if (posts.length === 0) {
-            res.status(400).send({ message: "There are no posts with this title." });
+            return res.status(400).send({ message: "There are no posts with this title." });
         };
 
-        res.status(200).send({
+        return res.status(200).send({
             posts: posts.map(post => ({
                 id: post._id,
                 title: post.title,
@@ -160,20 +159,20 @@ const searchByTitle = async (req, res) => {
             })),
         });
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        return res.status(500).send({ message: err.message });
     };
 };
 
-const searchByUser = async (req, res) => {
+export const searchByUser = async (req, res) => {
     try {
         const userId = req.userId;
         const posts = await searchByUserService(userId);
 
         if (posts.length === 0) {
-            res.status(400).send({ message: "This user has no posts." });
+            return res.status(400).send({ message: "This user has no posts." });
         };
 
-        res.status(200).send({
+        return res.status(200).send({
             posts: posts.map(post => ({
                 id: post._id,
                 title: post.title,
@@ -188,11 +187,11 @@ const searchByUser = async (req, res) => {
             })),
         });
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        return res.status(500).send({ message: err.message });
     };
 };
 
-const update = async (req, res) => {
+export const update = async (req, res) => {
     try {
         const { title, text, banner } = req.body;
         const { id, post } = req;
@@ -212,13 +211,13 @@ const update = async (req, res) => {
             banner
         );
 
-        res.status(200).send({ message: "Post successfully updated." });
+        return res.status(200).send({ message: "Post successfully updated." });
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        return res.status(500).send({ message: err.message });
     };
 };
 
-const exclude = async (req, res) => {
+export const exclude = async (req, res) => {
     try {
         const { id, post } = req;
 
@@ -228,10 +227,8 @@ const exclude = async (req, res) => {
 
         await excludeService(id);
 
-        res.status(200).send({ message: "Post successfully deleted." });
+        return res.status(200).send({ message: "Post successfully deleted." });
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        return res.status(500).send({ message: err.message });
     };
 };
-
-export { create, findAll, findById, topPosts, searchByTitle, searchByUser, update, exclude };
