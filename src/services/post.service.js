@@ -25,4 +25,10 @@ const searchByTitleService = (title) => Post.find({
     .sort({ _id: -1 })
     .populate("user");
 
-export { createService, findAllService, countService, topPostsService, findByIdService, searchByTitleService };
+const searchByUserService = (id) => Post.find({
+        user: id
+    })
+    .sort({ _id: -1 })
+    .populate("user");
+
+export { createService, findAllService, countService, topPostsService, findByIdService, searchByTitleService, searchByUserService };

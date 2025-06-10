@@ -1,4 +1,12 @@
-import { createService, findAllService, countService, topPostsService, findByIdService, searchByTitleService } from "../services/post.service.js";
+import { 
+    createService,
+    findAllService,
+    countService,
+    topPostsService,
+    findByIdService,
+    searchByTitleService,
+    searchByUserService,
+} from "../services/post.service.js";
 
 const create = async (req, res) => {
     try {
@@ -155,4 +163,32 @@ const searchByTitle = async (req, res) => {
     };
 };
 
-export { create, findAll, findById, topPosts, searchByTitle };
+const searchByUser = async (req, res) => {
+    try {
+        const userId = req.userId;
+        const posts = await searchByUserService(userId);
+
+        if (posts.length === 0) {
+            res.status(400).send({ message: "This user has no posts." });
+        };
+
+        res.status(200).send({
+            posts: posts.map(post => ({
+                id: post._id,
+                title: post.title,
+                text: post.text,
+                banner: post.banner,
+                likes: post.likes,
+                comments: post.comments,
+                
+                name: post.user.name,
+                userName: post.user.username,
+                userAvatar: post.user.avatar,
+            })),
+        });
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    };
+};
+
+export { create, findAll, findById, topPosts, searchByTitle, searchByUser };
