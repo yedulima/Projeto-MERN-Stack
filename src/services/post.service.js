@@ -31,4 +31,15 @@ const searchByUserService = (id) => Post.find({
     .sort({ _id: -1 })
     .populate("user");
 
-export { createService, findAllService, countService, topPostsService, findByIdService, searchByTitleService, searchByUserService };
+const updateService = (
+    id,
+    title,
+    text,
+    banner
+    ) => Post.findOneAndUpdate(
+        { _id: id },
+        { title, text, banner },
+        { rawResult: true }
+    );
+
+export { createService, findAllService, countService, topPostsService, findByIdService, searchByTitleService, searchByUserService, updateService };

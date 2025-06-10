@@ -6,6 +6,7 @@ import {
     findByIdService,
     searchByTitleService,
     searchByUserService,
+    updateService,
 } from "../services/post.service.js";
 
 const create = async (req, res) => {
@@ -86,8 +87,7 @@ const findAll = async (req, res) => {
 
 const findById = async (req, res) => {
     try {
-        const id = req.id;
-        const post = await findByIdService(id);
+        const post = req.post;
 
         res.status(200).send({
             post: {
@@ -191,4 +191,30 @@ const searchByUser = async (req, res) => {
     };
 };
 
-export { create, findAll, findById, topPosts, searchByTitle, searchByUser };
+const update = async (req, res) => {
+    try {
+        const { title, text, banner } = req.body;
+        const { id, post } = req;
+
+        if (!title && !text && !banner) {
+            return res.status(400).send({ message: "Submit at least one field for update." });
+        };
+
+        if (post.user._id != req.userId) {
+            return res.status(400).send({ message: "User unauthorized." });
+        };
+
+        await updateService(
+            id,
+            title,
+            text,
+            banner
+        );
+
+        res.status(200).send({ message: "Post successfully updated." });
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    };
+};
+
+export { create, findAll, findById, topPosts, searchByTitle, searchByUser, update };
