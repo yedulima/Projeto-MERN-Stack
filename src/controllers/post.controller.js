@@ -7,6 +7,7 @@ import {
     searchByTitleService,
     searchByUserService,
     updateService,
+    excludeService,
 } from "../services/post.service.js";
 
 const create = async (req, res) => {
@@ -217,4 +218,20 @@ const update = async (req, res) => {
     };
 };
 
-export { create, findAll, findById, topPosts, searchByTitle, searchByUser, update };
+const exclude = async (req, res) => {
+    try {
+        const { id, post } = req;
+
+        if (post.user._id != req.userId) {
+            return res.status(400).send({ message: "User unauthorized." });
+        };
+
+        await excludeService(id);
+
+        res.status(200).send({ message: "Post successfully deleted." });
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    };
+};
+
+export { create, findAll, findById, topPosts, searchByTitle, searchByUser, update, exclude };

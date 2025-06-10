@@ -42,4 +42,16 @@ const updateService = (
         { rawResult: true }
     );
 
-export { createService, findAllService, countService, topPostsService, findByIdService, searchByTitleService, searchByUserService, updateService };
+const excludeService = (id) => Post.findOneAndDelete({ _id: id });
+
+export {
+    createService,
+    findAllService,
+    countService,
+    topPostsService,
+    findByIdService,
+    searchByTitleService,
+    searchByUserService,
+    updateService,
+    excludeService,
+};
