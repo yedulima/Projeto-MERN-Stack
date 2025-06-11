@@ -183,7 +183,7 @@
 
         "/auth/login": {
             "post": {
-            "summary": "Login to Breaking News",
+            "summary": "Login",
             "description": "Route responsible for logging in a registered user",
             "tags": ["Auth"],
             "requestBody": {
