@@ -167,7 +167,7 @@ export const searchByTitle = async (req, res) => {
     };
 };
 
-export const searchByUser = async (req, res) => {
+export const searchByUserId = async (req, res) => {
     try {
         const userId = req.userId;
         const posts = await searchByUserService(userId);

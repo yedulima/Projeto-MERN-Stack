@@ -9,6 +9,6 @@ router.post("/", create);
 router.get("/", findAll);
 
 router.get("/:id", validId, validUser, findById);
-router.patch("/:id", validId, validUser, update);
+router.patch("/update/:id", validId, validUser, update);
 
 export default router;
