@@ -214,7 +214,7 @@
             }
         },
 
-        "/posts/": {
+        "/posts": {
             "post": {
             "summary": "Create a new post",
             "description": "Route responsible for creating a new Post",
@@ -262,7 +262,7 @@
             }
             }
         },
-        "/posts": {
+        "/posts/": {
             "get": {
             "summary": "Search all posts",
             "description": "Route responsible for fetching all posts",
