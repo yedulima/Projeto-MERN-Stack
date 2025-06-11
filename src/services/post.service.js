@@ -43,3 +43,27 @@ export const updateService = (
     );
 
 export const excludeService = (id) => Post.findOneAndDelete({ _id: id });
+
+export const likeService = (id, userId) => Post.findOneAndUpdate(
+    { _id: id, "likes.userId": { $nin: [ userId ] } },
+    { $push: { likes: { userId, created: new Date() } } }
+);
+
+export const deleteLikeService = (id, userId) => Post.findOneAndUpdate(
+    { _id: id },
+    { $pull: { likes: { userId } } }
+);
+
+export const addCommentService = (id, userId, text) => {
+    const idComment = Math.floor(Date.now() * Math.random()).toString(36);
+
+    return Post.findOneAndUpdate(
+        { _id: id },
+        { $push: { comments: { idComment, userId, text, createdAt: new Date() } } }
+    );
+};
+
+export const deleteCommentService = (id, userId, idComment) => Post.findOneAndUpdate(
+    { _id: id },
+    { $pull: { comments: { idComment, userId } } }
+);
