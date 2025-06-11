@@ -214,7 +214,7 @@
             }
         },
 
-        "/posts/create": {
+        "/post/create": {
             "post": {
             "summary": "Create a new post",
             "description": "Route responsible for creating a new Post",
@@ -262,7 +262,7 @@
             }
             }
         },
-        "/posts/findAll": {
+        "/post/findAll": {
             "get": {
             "summary": "Search all posts",
             "description": "Route responsible for fetching all posts",
@@ -299,7 +299,7 @@
             }
             }
         },
-        "/posts/top": {
+        "/post/top": {
             "get": {
             "summary": "Search top post",
             "description": "Route responsible for fetching top post",
@@ -322,7 +322,7 @@
             }
             }
         },
-        "/posts/search": {
+        "/post/search": {
             "get": {
             "summary": "Search posts by title",
             "description": "Route responsible for fetching the posts that match the title sent via query params",
@@ -355,7 +355,7 @@
             }
             }
         },
-        "/posts/{id}": {
+        "/post/{id}": {
             "patch": {
             "summary": "Search post by id",
             "description": "Route responsible for fetching post by id",
@@ -391,7 +391,7 @@
             }
             }
         },
-        "/posts/byUserId": {
+        "/post/byUserId": {
             "get": {
             "summary": "Search posts by use id",
             "description": "Route responsible for fetching posts by use id",
@@ -419,7 +419,7 @@
             }
             }
         },
-        "/posts/update/{id}": {
+        "/post/update/{id}": {
             "patch": {
             "summary": "Update a post",
             "description": "Route responsible for updating a Post",
@@ -473,7 +473,7 @@
             }
             }
         },
-        "/posts/delete/{id}": {
+        "/post/delete/{id}": {
             "delete": {
             "summary": "Delete a post",
             "description": "Route responsible for deleting a Post",
@@ -501,7 +501,7 @@
             }
             }
         },
-        "/posts/like/{id}": {
+        "/post/like/{id}": {
             "patch": {
             "summary": "Like a post",
             "description": "Route responsible for liking a post",
@@ -529,7 +529,7 @@
             }
             }
         },
-        "/posts/comment/{id}": {
+        "/post/comment/{id}": {
             "patch": {
             "summary": "Comment on a post",
             "description": "Route responsible for commenting on a post",
@@ -573,7 +573,7 @@
             }
             }
         },
-        "/posts/comment/{id}/{idComment}": {
+        "/post/comment/{id}/{idComment}": {
             "patch": {
             "summary": "Delete comment on a post",
             "description": "Route responsible for deleting comment on a post",
