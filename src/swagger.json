@@ -10,6 +10,10 @@
     },
     "servers": [
         {
+            "url": "https://projeto-mern-stack-api.onrender.com",
+            "description": "API Render Server"
+        },
+        {
             "url": "http://localhost:3000",
             "description": "Local Server"
         }
