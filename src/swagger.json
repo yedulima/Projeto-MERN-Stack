@@ -19,7 +19,7 @@
         }
     ],
     "paths": {
-        "/user/": {
+        "/user/create": {
             "post": {
             "summary": "Create a new user",
             "description": "Route responsible for creating a new user",
@@ -63,7 +63,7 @@
             }
             }
         },
-        "/user": {
+        "/user/findAll": {
             "get": {
             "summary": "Search all users",
             "description": "Route responsible for fetching all users",
@@ -214,7 +214,7 @@
             }
         },
 
-        "/posts": {
+        "/posts/create": {
             "post": {
             "summary": "Create a new post",
             "description": "Route responsible for creating a new Post",
@@ -262,7 +262,7 @@
             }
             }
         },
-        "/posts/": {
+        "/posts/findAll": {
             "get": {
             "summary": "Search all posts",
             "description": "Route responsible for fetching all posts",
@@ -512,7 +512,7 @@
                 "in": "path",
                 "name": "id",
                 "type": "string",
-                "description": "User ID",
+                "description": "Post ID",
                 "required": true
                 }
             ],
@@ -540,7 +540,7 @@
                 "in": "path",
                 "name": "id",
                 "type": "string",
-                "description": "User ID",
+                "description": "Post ID",
                 "required": true
                 }
             ],
@@ -560,6 +560,41 @@
                 }
                 }
             },
+            "responses": {
+                "401": {
+                "description": "Unauthorized"
+                },
+                "400": {
+                "description": "Not Found"
+                },
+                "200": {
+                "description": "OK"
+                }
+            }
+            }
+        },
+        "/posts/comment/{id}/{idComment}": {
+            "patch": {
+            "summary": "Delete comment on a post",
+            "description": "Route responsible for deleting comment on a post",
+            "tags": ["Post"],
+            "security": [{ "bearerAuth": [] }],
+            "parameters": [
+                {
+                "in": "path",
+                "name": "id",
+                "type": "string",
+                "description": "Post ID",
+                "required": true
+                },
+                {
+                "in": "path",
+                "name": "id",
+                "type": "string",
+                "description": "Comment ID",
+                "required": true
+                }
+            ],
             "responses": {
                 "401": {
                 "description": "Unauthorized"
