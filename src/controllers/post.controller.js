@@ -60,8 +60,6 @@ export const findAll = async (req, res) => {
 
         const posts = await findAllService(limit, offset);
 
-        console.log(posts);
-
         const total = await countService();
         const currentUrl = req.baseUrl;
 
@@ -76,8 +74,6 @@ export const findAll = async (req, res) => {
             previous !== null
                 ? `${currentUrl}?limit=${limit}&offset=${offset}`
                 : null;
-
-        console.log(posts);
 
         return res.status(200).send({
             nextUrl,
@@ -95,6 +91,7 @@ export const findAll = async (req, res) => {
                 views: post.views,
                 saves: post.saves.length,
                 comments: post.comments.length,
+                date: post.createdAt,
 
                 userName: post.user.username,
             })),
