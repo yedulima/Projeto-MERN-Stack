@@ -112,7 +112,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/User"
+                                        "$ref": "#/components/schemas/Post"
                                     }
                                 }
                             }
@@ -224,7 +224,7 @@
                             "examples": {
                                 "User": {
                                     "value": {
-                                        "email": "docencia.thiago@gmail.com",
+                                        "username": "@du",
                                         "password": "12345"
                                     }
                                 }
@@ -559,7 +559,7 @@
             }
         },
 
-        "/post/save/:id": {
+        "/post/save/{id}": {
             "patch": {
                 "summary": "Save a post",
                 "description": "Route responsible for saving the user who saved a post",
@@ -641,14 +641,14 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "Post Id",
                         "type": "string",
                         "description": "Post ID",
                         "required": true
                     },
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "Comment Id",
                         "type": "string",
                         "description": "Comment ID",
                         "required": true
@@ -673,17 +673,33 @@
                 "description": "Route responsible for replying comment on a post",
                 "tags": ["Post"],
                 "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Reply"
+                            },
+                            "examples": {
+                                "Reply": {
+                                    "value": {
+                                        "text": "Oi"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "Post Id",
                         "type": "string",
                         "description": "Post ID",
                         "required": true
                     },
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "Comment Id",
                         "type": "string",
                         "description": "Comment ID",
                         "required": true
@@ -711,21 +727,21 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "Post Id",
                         "type": "string",
                         "description": "Post ID",
                         "required": true
                     },
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "Comment Id",
                         "type": "string",
                         "description": "Comment ID",
                         "required": true
                     },
                     {
                         "in": "path",
-                        "name": "id",
+                        "name": "Reply Id",
                         "type": "string",
                         "description": "Reply ID",
                         "required": true
@@ -807,6 +823,14 @@
                 "type": "object",
                 "properties": {
                     "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Reply": {
+                "type": "object",
+                "properties": {
+                    "text": {
                         "type": "string"
                     }
                 }

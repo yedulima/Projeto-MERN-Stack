@@ -91,14 +91,12 @@ export const findAll = async (req, res) => {
                 title: post.title,
                 text: post.text,
                 banner: post.banner,
-                likes: post.likes,
+                likes: post.likes.length,
                 views: post.views,
                 saves: post.saves.length,
-                comments: post.comments,
+                comments: post.comments.length,
 
-                name: post.user.name,
                 userName: post.user.username,
-                userAvatar: post.user.avatar,
             })),
         });
     } catch (err) {
@@ -122,7 +120,6 @@ export const findById = async (req, res) => {
                 views: post.views,
                 saves: post.saves,
                 comments: post.comments,
-
                 name: post.user.name || "Unknow",
                 userName: post.user.username || "Unknow",
                 userAvatar:
@@ -151,14 +148,12 @@ export const topPosts = async (req, res) => {
                 title: post.title,
                 text: post.text,
                 banner: post.banner,
-                likes: post.likes,
+                likes: post.likes.length,
                 views: post.views,
                 saves: post.saves.length,
-                comments: post.comments,
+                comments: post.comments.length,
 
-                name: post.user.name,
                 userName: post.user.username,
-                userAvatar: post.user.avatar,
             },
         });
     } catch (err) {
@@ -183,14 +178,12 @@ export const searchByTitle = async (req, res) => {
                 title: post.title,
                 text: post.text,
                 banner: post.banner,
-                likes: post.likes,
+                likes: post.likes.length,
                 views: post.views,
                 saves: post.saves.length,
-                comments: post.comments,
+                comments: post.comments.length,
 
-                name: post.user.name,
                 userName: post.user.username,
-                userAvatar: post.user.avatar,
             })),
         });
     } catch (err) {
@@ -213,14 +206,12 @@ export const searchByUserId = async (req, res) => {
                 title: post.title,
                 text: post.text,
                 banner: post.banner,
-                likes: post.likes,
+                likes: post.likes.length,
                 views: post.views,
                 saves: post.saves.length,
-                comments: post.comments,
+                comments: post.comments.length,
 
-                name: post.user.name,
                 userName: post.user.username,
-                userAvatar: post.user.avatar,
             })),
         });
     } catch (err) {

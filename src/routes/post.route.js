@@ -28,7 +28,7 @@ router.get("/top", topPosts);
 router.get("/search", searchByTitle);
 router.get("/byUserId", authMiddleware, searchByUserId);
 
-router.get("/:id", authMiddleware, validId, validPost, findById);
+router.patch("/:id", authMiddleware, validId, validPost, findById);
 router.patch("/update/:id", authMiddleware, validId, validPost, update);
 router.delete("delete/:id", authMiddleware, validId, validPost, exclude);
 router.patch("/like/:id", authMiddleware, validId, validPost, like);
