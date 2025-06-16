@@ -31,6 +31,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    savedPosts: {
+        type: Array,
+        required: true,
+    }
 });
 
 UserSchema.pre("save", async function (next) {

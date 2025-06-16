@@ -26,6 +26,14 @@ const PostSchema = new mongoose.Schema({
         type: Array,
         required: true,
     },
+    views: {
+        type: Number,
+        default: 0,
+    },
+    saves: {
+        type: Array,
+        required: true,
+    },
     comments: {
         type: Array,
         required: true,

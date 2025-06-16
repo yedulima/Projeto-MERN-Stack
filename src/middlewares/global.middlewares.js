@@ -21,6 +21,8 @@ const validUser = async (req, res, next) => {
     try {
         const id = req.params.id;
         const user = await findByIdService(id);
+
+        console.log(id, user)
         
         if (!user) {
             return res.status(400).send({ message: "User not found." });

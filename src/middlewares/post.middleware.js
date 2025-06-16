@@ -3,6 +3,7 @@ import { findByIdService } from "../services/post.service.js";
 const validPost = async (req, res, next) => {
     try {
         const id = req.params.id;
+
         const post = await findByIdService(id);
         
         if (!post) {
